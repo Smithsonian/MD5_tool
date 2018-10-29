@@ -1,5 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file alias="md5_256.png">md5_256.png</file>
-    </qresource>
-</RCC>
