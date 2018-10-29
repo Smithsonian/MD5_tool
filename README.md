@@ -1,8 +1,8 @@
 # MD5_tool
 Utility that calculates, and saves to a file, the MD5 hash of all files in a directory.
 
- * bin - Compiled applications for Windows and Mac
- * src - Source code
+ * [bin](bin) - Compiled applications for Windows and Mac
+ * [source](source) - Source code
 
 # License
 
