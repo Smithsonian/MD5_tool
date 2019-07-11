@@ -5,6 +5,7 @@ Utility that calculates, and saves to a file, the MD5 hash of all files in a dir
  * [Windows](Windows) - Windows version
    * [Windows/bin](Windows/bin) - Executable, this is probably what you want
    * [Windows/source](Windows/source) - Source code
+ * [Mac_Linux](Mac_Linux) - Mac and Linux version. *Coming soon.*
 
 ## Previous version
 
