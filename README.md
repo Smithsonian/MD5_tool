@@ -1,8 +1,18 @@
 # MD5_tool
+
 Utility that calculates, and saves to a file, the MD5 hash of all files in a directory.
 
- * [bin](bin) - Compiled applications for Windows and Mac
- * [source](source) - Source code
+ * [Windows](Windows) - Windows version
+   * [Windows/bin](Windows/bin) - Executable, this is probably what you want
+   * [Windows/source](Windows/source) - Source code
+
+## Previous version
+
+We have a previous version that is not currently supported. The last release was in 2016.
+
+ * MD5ER
+   * [bin](MD5ER_2016/bin) - Compiled applications for Windows and Mac
+   * [source](MD5ER_2016/source) - Source code
 
 # License
 
