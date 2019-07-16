@@ -24,7 +24,7 @@ On Windows, double click the exe file. You will see this window:
 
 Note: If you get this warning from Windows:
 
-![wd1](https://user-images.githubusercontent.com/2302171/61297981-6a872a00-a7ab-11e9-81d4-5cbfc94783b8.png)
+![wd1](https://user-images.githubusercontent.com/2302171/61298234-dc5f7380-a7ab-11e9-8ff2-569aef1d51d0.png)
 
 Just select 'More info' and then click 'Run anyway':
 
