@@ -1,9 +1,8 @@
 # MD5_tool
 
-* [bin](bin) - Executable, this is probably what you want
-* [source](source) - Source code
+16 July 2019
 
-The executable was created from the PowerShell source code using the [PS2EXE-GUI](https://gallery.technet.microsoft.com/scriptcenter/PS2EXE-GUI-Convert-e7cb69d5) utility.
+ * md5tool.exe - Executable script for Windows 10 64-bit, version 0.1
 
 # License
 
