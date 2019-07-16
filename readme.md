@@ -28,7 +28,7 @@ Note: If you get this warning from Windows:
 
 Just select 'More info' and then click 'Run anyway':
 
-![wd2](https://user-images.githubusercontent.com/2302171/61297993-72df6500-a7ab-11e9-8f2c-1fb76823c135.png)
+![wd2](https://user-images.githubusercontent.com/2302171/61299078-69ef9300-a7ad-11e9-88cd-d2b2190bc426.png)
 
 Then, select the top folder where the files are (all folders inside this one will have their own md5 file). 
 Select 'Save log to file' to save the process log into a file (recommended for troubleshooting
