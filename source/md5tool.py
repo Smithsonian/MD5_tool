@@ -20,7 +20,7 @@ import webbrowser
 
 
 #Script variables
-script_title = "DPO MD5 Utility"
+script_title = "DPO MD5 Tool"
 subtitle = "Digitization Program Office\nOffice of the Chief Information Officer\nSmithsonian Institution\nhttps://dpo.si.edu"
 ver = "0.1"
 vercheck = "https://raw.githubusercontent.com/Smithsonian/MD5_tool/master/md5toolversion.txt"
@@ -53,7 +53,7 @@ else:
 github_text = "Go to Github"
 layout = [[sg.Text(msg_text.format(script_title = script_title, subtitle = subtitle, ver = ver, repo = repo, lic = lic, cur_ver = cur_ver))],
                  [sg.Submit("OK"), sg.Cancel(github_text)]]
-window = sg.Window(script_title, layout)
+window = sg.Window("Info", layout)
 event, values = window.Read()
 window.Close()
 
