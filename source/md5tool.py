@@ -3,7 +3,9 @@
 # Script to generate a file that contains the MD5 hash of all
 # the files in each subdirectory.
 # 
-# 15 july 2019
+# https://github.com/Smithsonian/MD5_tool/
+# 
+# 26 Aug 2019
 # 
 # Digitization Program Office, 
 # Office of the Chief Information Officer,
@@ -17,12 +19,13 @@ from time import localtime, strftime
 import hashlib, locale, sys, logging, os, glob
 from functools import partial
 import webbrowser
+from dpologo import dpologo
 
 
 #Script variables
 script_title = "DPO MD5 Tool"
 subtitle = "Digitization Program Office\nOffice of the Chief Information Officer\nSmithsonian Institution\nhttps://dpo.si.edu"
-ver = "0.1"
+ver = "0.1.1"
 vercheck = "https://raw.githubusercontent.com/Smithsonian/MD5_tool/master/md5toolversion.txt"
 repo = "https://github.com/Smithsonian/MD5_tool/"
 lic = "Available under the Apache 2.0 License"
@@ -51,8 +54,10 @@ else:
 
 #GUI info window
 github_text = "Go to Github"
-layout = [[sg.Text(msg_text.format(script_title = script_title, subtitle = subtitle, ver = ver, repo = repo, lic = lic, cur_ver = cur_ver))],
-                 [sg.Submit("OK"), sg.Cancel(github_text)]]
+layout = [
+            [sg.Image(data = dpologo)],
+            [sg.Text(msg_text.format(script_title = script_title, subtitle = subtitle, ver = ver, repo = repo, lic = lic, cur_ver = cur_ver))],
+            [sg.Submit("OK"), sg.Cancel(github_text)]]
 window = sg.Window("Info", layout)
 event, values = window.Read()
 window.Close()
@@ -79,7 +84,7 @@ window.Close()
 
 #User clicked cancel, exit program
 if event == 'Cancel':
-    raise SystemExit("Cancelling: no path supplied")
+    raise SystemExit("User pressed Cancel")
 
 
 folder_to_browse = values[0]
