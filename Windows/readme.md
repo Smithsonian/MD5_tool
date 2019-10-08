@@ -1,8 +1,8 @@
 # MD5_tool
 
-26 August 2019
+8 Oct 2019
 
- * md5tool.exe - Executable script for Windows 10 64-bit, version 0.1.1
+ * md5tool.exe - Executable script for Windows 10 64-bit, version 0.1.2
 
 # License
 

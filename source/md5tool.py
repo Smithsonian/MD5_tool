@@ -5,7 +5,7 @@
 # 
 # https://github.com/Smithsonian/MD5_tool/
 # 
-# 26 Aug 2019
+# 8 Oct 2019
 # 
 # Digitization Program Office, 
 # Office of the Chief Information Officer,
@@ -23,9 +23,9 @@ from dpologo import dpologo
 
 
 #Script variables
-script_title = "DPO MD5 Tool"
+script_title = "MD5 Tool"
 subtitle = "Digitization Program Office\nOffice of the Chief Information Officer\nSmithsonian Institution\nhttps://dpo.si.edu"
-ver = "0.1.1"
+ver = "0.1.2"
 vercheck = "https://raw.githubusercontent.com/Smithsonian/MD5_tool/master/md5toolversion.txt"
 repo = "https://github.com/Smithsonian/MD5_tool/"
 lic = "Available under the Apache 2.0 License"
@@ -45,9 +45,9 @@ with urllib.request.urlopen(vercheck) as response:
 
 cur_ver = current_ver.decode('ascii').replace('\n','')
 if cur_ver != ver:
-    msg_text = "{script_title}\n\n{subtitle}\n\n{repo}\n\n{lic}\n\nver. {ver}\nThis version is outdated. Current version is {cur_ver}.\nPlease download the updated version at: {repo}"
+    msg_text = "{subtitle}\n\n{repo}\n\n{lic}\n\nver. {ver}\nThis version is outdated. Current version is {cur_ver}.\nPlease download the updated version at: {repo}"
 else:
-    msg_text = "{script_title}\n\n{subtitle}\n\n{repo}\n\n{lic}\n\nver. {ver}"
+    msg_text = "{subtitle}\n\n{repo}\n\n{lic}\n\nver. {ver}"
 
 
 
@@ -56,7 +56,9 @@ else:
 github_text = "Go to Github"
 layout = [
             [sg.Image(data = dpologo)],
-            [sg.Text(msg_text.format(script_title = script_title, subtitle = subtitle, ver = ver, repo = repo, lic = lic, cur_ver = cur_ver))],
+            [sg.Txt('_'  * 48)], 
+            [sg.Text(script_title, font=(20))],
+            [sg.Text(msg_text.format(subtitle = subtitle, ver = ver, repo = repo, lic = lic, cur_ver = cur_ver))],
             [sg.Submit("OK"), sg.Cancel(github_text)]]
 window = sg.Window("Info", layout)
 event, values = window.Read()
@@ -75,7 +77,7 @@ if event == None:
 #Ask for the top folder
 layout = [[sg.Text('Select the top folder to generate the MD5 files')],
          [sg.InputText(), sg.FolderBrowse()],
-         [sg.Checkbox('Save log to file', default = False)],
+         [sg.Checkbox('Skip folders with md5 files', default = False)],
          [sg.Submit(), sg.Cancel()]]
 
 window = sg.Window('Select folder', layout)
@@ -88,24 +90,26 @@ if event == 'Cancel':
 
 
 folder_to_browse = values[0]
-save_to_log = values[1]
+skip_existing_md5 = values[1]
 
-if save_to_log:
-    # Logging
-    logfile_name = '{}.log'.format(current_time)
-    # from http://stackoverflow.com/a/9321890
-    logging.basicConfig(level=logging.DEBUG,
-                        format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
-                        datefmt='%m-%d %H:%M:%S',
-                        filename=logfile_name,
-                        filemode='a')
-    console = logging.StreamHandler()
-    console.setLevel(logging.INFO)
-    formatter = logging.Formatter('%(name)-12s: %(levelname)-8s %(message)s')
-    console.setFormatter(formatter)
-    logging.getLogger('').addHandler(console)
-    logger1 = logging.getLogger("md5tool")
-    logger1.info("folder_to_browse: {}".format(folder_to_browse))
+
+# Logging
+if os.path.isdir('logs') == False:
+    os.mkdir('logs')
+logfile_name = 'logs/{}.log'.format(current_time)
+# from http://stackoverflow.com/a/9321890
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
+                    datefmt='%m-%d %H:%M:%S',
+                    filename=logfile_name,
+                    filemode='a')
+console = logging.StreamHandler()
+console.setLevel(logging.INFO)
+formatter = logging.Formatter('%(name)-12s: %(levelname)-8s %(message)s')
+console.setFormatter(formatter)
+logging.getLogger('').addHandler(console)
+logger1 = logging.getLogger("md5tool")
+logger1.info("folder_to_browse: {}".format(folder_to_browse))
 
 
 
@@ -118,8 +122,7 @@ event, values = window.Read()
 window.Close()
 
 extensions_to_skip = values[0].replace(" ", "")
-if save_to_log:
-    logger1.info("extensions_to_skip: {}".format(extensions_to_skip))
+logger1.info("extensions_to_skip: {}".format(extensions_to_skip))
 
 
 
@@ -130,8 +133,7 @@ window = sg.Window('Select the output format', layout)
 event, values = window.Read()
 window.Close()
 hash_format = values[0][0]
-if save_to_log:
-    logger1.info("hash_format: {}".format(hash_format))
+logger1.info("hash_format: {}".format(hash_format))
 
 
 
@@ -141,8 +143,7 @@ def md5sum(filepath, filename):
         d = hashlib.md5()
         for buf in iter(partial(f.read, 128), b''):
             d.update(buf)
-    if save_to_log:
-        logger1.info("filename md5: {}/{} {}".format(filepath, filename, d.hexdigest()))
+    logger1.info("filename md5: {}/{} {}".format(filepath, filename, d.hexdigest()))
     return d.hexdigest()
 
 
@@ -162,8 +163,7 @@ def write_hash(directory, filename, file_md5hash, hash_format, current_time):
         md5hash_formatted = "{},{}\n".format(filename, file_md5hash)
     md5f.write(md5hash_formatted)
     md5f.close()
-    if save_to_log:
-        logger1.info("md5_file: {}".format(md5_file))
+    logger1.info("md5_file: {}".format(md5_file))
     return True
 
 
@@ -172,27 +172,27 @@ layout = [[sg.Text('Working...')], [sg.Quit(button_color=('black', 'orange'))]]
 window = sg.Window('Generating files', layout, auto_size_text=True)
 
 
-
 res = ""
 
 # This is the code that reads and updates your window      
 event, values = window.Read(timeout=1)      
 # Recursively browse the directories
 for root, dirs, files in os.walk(folder_to_browse):
-    #logger1.info("Running on folder {}".format(root))
+    logger1.info("Running on folder {}".format(root))
+    if skip_existing_md5 == True:
+        if len(glob.glob("{}/*.md5".format(root))) > 0:
+            continue
     for file in files:
         if event is not None:
             ext = os.path.splitext(file)[-1].lower()[1:]
             if ext not in extensions_to_skip:
                 file_md5hash = md5sum(root, file)
-                if save_to_log:
-                    logger1.info("Getting MD5 hash for file file {}/{}".format(root, file))
+                logger1.info("MD5 hash for file {}/{}: {}".format(root, file, file_md5hash))
                 write_hash(root, file, file_md5hash, hash_format, current_time)
                 res = res + root + "/" + file + " with MD5 hash: " + file_md5hash + "\n"
-        if event == 'Quit'  or values is None:
+        if event == 'Quit' or values is None:
+            logger1.info("Quit")
             break
-
-
 
 
 
