@@ -32,7 +32,7 @@ lic = "Available under the Apache 2.0 License"
 
 
 # Set locale to UTF-8
-locale.setlocale(locale.LC_ALL, 'en_US.utf8')
+#locale.setlocale(locale.LC_ALL, 'en_US.utf8')
 
 
 #Get current time
