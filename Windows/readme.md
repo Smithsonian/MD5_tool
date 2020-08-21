@@ -8,7 +8,7 @@
 
 On Windows, double click the exe file. You will see this window:
 
-![md51](https://user-images.githubusercontent.com/2302171/61298005-7a067300-a7ab-11e9-816f-f50cfa017e1c.png)
+![gui1](https://user-images.githubusercontent.com/2302171/90901574-20527e00-e399-11ea-85dc-1b3ee7e5b7ba.png)
 
 Note: If you get this warning from Windows:
 
