@@ -1,5 +1,7 @@
 # MD5_tool
 
+<img align="right" width="256" height="256" src="https://user-images.githubusercontent.com/2302171/96618099-7f1d7080-12d2-11eb-81dd-a296a573abbd.png">
+
 Utility that calculates, and saves to a file, the MD5 hash of all files in a directory.
 
  * [Windows](Windows) - Windows version
