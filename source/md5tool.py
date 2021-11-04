@@ -94,7 +94,7 @@ skip_existing_md5 = values[1]
 
 
 # Logging
-if os.path.isdir('logs') == False:
+if os.path.isdir('logs')==False:
     os.mkdir('logs')
 logfile_name = 'logs/{}.log'.format(current_time)
 # from http://stackoverflow.com/a/9321890
