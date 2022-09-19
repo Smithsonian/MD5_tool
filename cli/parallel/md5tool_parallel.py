@@ -64,7 +64,7 @@ print(f.renderText(script_title))
 print(msg_text.format(subtitle=subtitle, ver=ver, repo=repo, lic=lic))
 
 folder_md5 = sys.argv[1]
-no_workers = sys.argv[2]
+no_workers = int(sys.argv[2])
 
 # Get current time
 current_time = strftime("%Y%m%d_%H%M%S", localtime())
