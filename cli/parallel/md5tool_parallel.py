@@ -85,7 +85,7 @@ if len(glob.glob("{}/*.md5".format(folder_md5))) > 0:
     print("md5 file exists, exiting.")
     sys.exit(9)
 else:
-    results = p_map(md5sum, files, **{"num_cpus": no_workers})
+    results = p_map(md5sum, files, **{"num_cpus": int(no_workers)})
     with open("{}/{}_{}.md5".format(folder_md5, os.path.basename(os.path.dirname(folder_md5)), current_time), 'w') as fp:
         fp.write('\n'.join(results))
 
