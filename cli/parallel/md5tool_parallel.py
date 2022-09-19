@@ -61,7 +61,7 @@ msg_text = "{subtitle}\n\n{repo}\n\n{lic}\n\nver. {ver}"
 f = Figlet(font='slant')
 print("\n")
 print(f.renderText(script_title))
-print(msg_text.format(subtitle=subtitle, ver=ver, repo=repo, lic=lic, cur_ver=cur_ver))
+print(msg_text.format(subtitle=subtitle, ver=ver, repo=repo, lic=lic))
 
 folder_md5 = sys.argv[1]
 no_workers = sys.argv[2]
