@@ -1,20 +1,19 @@
 #!/usr/bin/env python3
-# 
-# Command line script to generate a file that contains the 
+#
+# Command line script to generate a file that contains the
 # MD5 hash of all the files in a subdirectory.
 # Works in parallel.
-# 
+#
 # https://github.com/Smithsonian/MD5_tool/
-# 
+#
 # 19 Sep 2022
-# 
-# Digitization Program Office, 
+#
+# Digitization Program Office,
 # Office of the Chief Information Officer,
 # Smithsonian Institution
 # https://dpo.si.edu
 #
 # Import modules
-# import urllib.request
 import hashlib
 import locale
 import sys
@@ -35,7 +34,6 @@ from p_tqdm import p_map
 script_title = "MD5 Tool - Parallel"
 subtitle = "Digitization Program Office\nOffice of the Chief Information Officer\nSmithsonian Institution\nhttps://dpo.si.edu"
 ver = "0.2.0"
-#vercheck = "https://raw.githubusercontent.com/Smithsonian/MD5_tool/master/md5toolversion.txt"
 repo = "https://github.com/Smithsonian/MD5_tool/"
 lic = "Available under the Apache 2.0 License"
 
@@ -44,16 +42,6 @@ locale.setlocale(locale.LC_ALL, 'en_US.utf8')
 
 # Get current time
 current_time = strftime("%Y%m%d_%H%M%S", localtime())
-
-# Check for updates to the script
-# with urllib.request.urlopen(vercheck) as response:
-#     current_ver = response.read()
-#
-# cur_ver = current_ver.decode('ascii').replace('\n', '')
-# if cur_ver != ver:
-#     msg_text = "{subtitle}\n\n{repo}\n\n{lic}\n\nver. {ver}\nThis version is outdated. Current version is {cur_ver}.\nPlease download the updated version at: {repo}"
-# else:
-#     msg_text = "{subtitle}\n\n{repo}\n\n{lic}\n\nver. {ver}"
 
 msg_text = "{subtitle}\n\n{repo}\n\n{lic}\n\nver. {ver}"
 
