@@ -8,6 +8,10 @@ Utility that calculates, and saves to a file, the MD5 hash of all files in a dir
  * [source](source) - Source code
  * [Mac_Linux](Mac_Linux) - Mac and Linux instructions
 
+## Note:
+
+A Python module is now available at: https://github.com/Smithsonian/si_md5_file
+
 ## Features
 
  * Writes an md5 file in each subfolder of the selected folder
